@@ -1,0 +1,20 @@
+<div class="search-bar px-10 py-2">
+  <div class="flex items-center justify-between">
+    <div>
+      @if (showFilterCrumbs) {
+        <div class="flex gap-2 items-center">
+          @for (key of searchKeys; track key) {
+            <div class="filter-crumb rounded-sm">
+              <span class="text-neutral-500">{{ key }}</span>
+              <span class=" text-neutral-600 font-bold px-2 bg-zinc-200 mx-1 rounded-sm">{{ searchFilter[key] }}</span>
+              <span class="text-sm-icon cursor-pointer text-neutral-900">
+                <mat-icon fontIcon="close"></mat-icon>
+              </span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+    <mat-icon fontIcon="search"></mat-icon>
+  </div>
+</div>
