@@ -1,0 +1,5 @@
+@use '../../../assets/styles/variables.scss' as vars;
+
+header {
+  border-bottom: 1px solid vars.$border-gray;
+}
