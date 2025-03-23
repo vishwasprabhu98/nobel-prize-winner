@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon'
 
 @Component({
@@ -11,9 +11,11 @@ import { MatIconModule } from '@angular/material/icon'
 })
 export class FilterComponent {
 
+  applyFilter = output<Record<string, number|string>>
+
   showFilterCrumbs = true
   searchFilter: Record<string, string|number> = {
-    name: 'ABc',
+    name: 'ABC',
     from: 2052,
     to: 4003
   }

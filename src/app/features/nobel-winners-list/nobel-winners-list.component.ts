@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FilterComponent } from "../../shared/components/filter/filter.component";
+import { FilterComponent } from "./components/filter/filter.component";
 
 @Component({
   selector: 'app-nobel-winners-list',
@@ -8,5 +8,9 @@ import { FilterComponent } from "../../shared/components/filter/filter.component
   styleUrl: './nobel-winners-list.component.scss'
 })
 export class NobelWinnersListComponent {
+
+  applyFilter(params: Event) {
+    console.log(params)
+  }
 
 }
