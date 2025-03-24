@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FilterComponent } from "./components/filter/filter.component";
+import { NobelPrizeListFilter } from '../../core/models/filter.model';
 
 @Component({
   selector: 'app-nobel-winners-list',
@@ -9,8 +10,7 @@ import { FilterComponent } from "./components/filter/filter.component";
 })
 export class NobelWinnersListComponent {
 
-  applyFilter(params: Event) {
+  applyFilter(params: NobelPrizeListFilter) {
     console.log(params)
   }
-
 }

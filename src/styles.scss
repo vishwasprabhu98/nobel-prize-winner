@@ -1,10 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 @use "tailwindcss";
+@import "./assets/styles/mixins.scss";
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   box-sizing: border-box;
 }
 p { margin: 0; }
 body { margin: 0; }
+:root {
+  // mat-datepicker
+  --mat-form-field-container-vertical-padding: 4px;
+  --mdc-filled-text-field-active-indicator-color: transparent;
+  --mat-form-field-container-height: 32px;
+}
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+.mat-mdc-form-field-icon-suffix {
+  margin-right: 0.25rem;
+}
+.mdc-line-ripple {
+  display: none;
+}
+.mdc-text-field--filled {
+  border-radius: 0.25rem !important;
+}
+// include date picker styles
+@include calender-styles();

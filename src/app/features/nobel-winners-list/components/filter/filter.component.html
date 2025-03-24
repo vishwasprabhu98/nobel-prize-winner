@@ -6,7 +6,7 @@
           @for (key of searchKeys; track key) {
             <div class="filter-crumb rounded-sm">
               <span class="text-neutral-500">{{ key }}</span>
-              <span class=" text-neutral-600 font-bold px-2 bg-zinc-200 mx-1 rounded-sm">{{ searchFilter[key] }}</span>
+              <span class=" text-neutral-600 font-semibold px-2 bg-zinc-200 mx-1 rounded-sm">{{ getPropertyValue(key) }}</span>
               <span class="text-sm-icon cursor-pointer text-neutral-900">
                 <mat-icon fontIcon="close"></mat-icon>
               </span>
@@ -15,6 +15,20 @@
         </div>
       }
     </div>
-    <mat-icon fontIcon="search"></mat-icon>
+    <div class="flex gap-4 items-center calender-sm">
+      @if (!showFilterCrumbs) {
+        <mat-form-field>
+          <input matInput [matDatepicker]="dp" [formControl]="date">
+          <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker 
+            #dp
+            startView="multi-year"
+            (yearSelected)="setYear($event, dp)"
+            panelClass="year-picker"
+          ></mat-datepicker>
+        </mat-form-field>
+      }
+      <p class="font-semibold text-sm text-sky-700 cursor-pointer" (click)="openAdvancedFilter()">Advanced Filter</p>
+    </div>
   </div>
 </div>

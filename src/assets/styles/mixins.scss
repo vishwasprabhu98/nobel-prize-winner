@@ -1,0 +1,21 @@
+@mixin calender-styles {
+  .calender-sm {
+    .mat-datepicker-toggle .mat-mdc-icon-button {
+      padding: 0;
+      padding-left: 0.25rem;
+      width: 32px;
+      height: 32px;
+    }
+  }
+  .year-picker {
+    .mat-calendar-period-button {
+      pointer-events: none;
+    }
+    .mat-calendar-arrow {
+      display: none;
+    }
+    .mat-calendar-content:has(mat-year-view) {
+      display: none;
+    }
+  }
+}

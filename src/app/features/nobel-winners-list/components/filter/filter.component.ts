@@ -1,29 +1,82 @@
-import { Component, output } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Output, Signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon'
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import * as _moment from 'moment';
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import {default as _rollupMoment, Moment} from 'moment';
+import { FilterService } from '../../../../core/services/filter-service/filter.service';
+import { NobelPrizeListFilter } from '../../../../core/models/filter.model';
+import {
+  MatDialog,
+} from '@angular/material/dialog';
+import { FilterFormComponent } from '../filter-form/filter-form.component';
+const moment = _rollupMoment || _moment;
 
 @Component({
   selector: 'app-filter',
   imports: [
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    provideMomentDateAdapter({
+      parse: {
+        dateInput: 'YYYY',
+      },
+      display: {
+        dateInput: 'YYYY',
+        monthYearLabel: 'YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'YYYY',
+      },
+    })
   ],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss'
 })
 export class FilterComponent {
 
-  applyFilter = output<Record<string, number|string>>
+  readonly date = new FormControl(moment());
+  readonly dialog = inject(MatDialog);
 
-  showFilterCrumbs = true
-  searchFilter: Record<string, string|number> = {
-    name: 'ABC',
-    from: 2052,
-    to: 4003
+  @Output()
+  applyFilter = new EventEmitter<NobelPrizeListFilter>()
+
+  showFilterCrumbs = false
+  searchFilter!: Signal<NobelPrizeListFilter>
+
+  constructor(
+    private filterService: FilterService
+  ) {
+    this.searchFilter = computed(() => filterService.filterSignal())
   }
 
-  constructor() {}
+  openAdvancedFilter() {
+    this.dialog.open(FilterFormComponent)
+  }
+
+  setYear(normalizeYear: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.date.value ?? moment();
+    ctrlValue.year(normalizeYear.year());
+    this.date.setValue(ctrlValue);
+    datepicker.close();
+    this.applyFilter.emit({ ...this.searchFilter() })
+  }
+
+  getPropertyValue(key: string) {
+    return this.searchFilter()[key as keyof NobelPrizeListFilter]
+  }
 
   get searchKeys() {
-    return Object.keys(this.searchFilter)
+    if (this.searchFilter()) {
+      return Object.keys(this.searchFilter())
+    }
+    return []
   }
-
 }
