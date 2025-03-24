@@ -16,7 +16,7 @@ import { FilterFormComponent } from '../filter-form/filter-form.component';
 const moment = _rollupMoment || _moment;
 
 @Component({
-  selector: 'app-filter',
+  selector: 'app-nobel-prize-filter',
   imports: [
     MatIconModule,
     MatDatepickerModule,
@@ -40,7 +40,7 @@ const moment = _rollupMoment || _moment;
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss'
 })
-export class FilterComponent {
+export class NobelPrizeFilterComponent {
 
   readonly date = new FormControl(moment());
   readonly dialog = inject(MatDialog);
