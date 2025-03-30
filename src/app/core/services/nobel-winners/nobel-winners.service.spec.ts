@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApiService } from './api.service';
+import { NobelWinnersService } from './nobel-winners.service';
 
-describe('ApiService', () => {
-  let service: ApiService;
+describe('NobelWinnersService', () => {
+  let service: NobelWinnersService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiService);
+    service = TestBed.inject(NobelWinnersService);
   });
 
   it('should be created', () => {

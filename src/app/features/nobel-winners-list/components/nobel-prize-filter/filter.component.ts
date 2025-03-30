@@ -61,6 +61,7 @@ export class NobelPrizeFilterComponent {
       const momentDate = moment(`01/01/${filterService.filterSignal().nobelPrizeYear}`, 'DD/MM/YYYY')
       this.date.setValue(momentDate)
       this.searchFilter = filterService.filterSignal
+      this.applyFilter.emit()
     })
   }
 
@@ -125,7 +126,7 @@ export class NobelPrizeFilterComponent {
 
   getPropertyValue(key: string) {
     const filterValue = this.searchFilter()[key as keyof NobelPrizeListFilter]
-    if (key === 'nobelPrizeCategory' && filterValue) {
+    if (key === FILTER_KEYS.NOBEL_PRIZE_CATEGORY && filterValue) {
       return this.allCategoryValues[filterValue]
     }
     return filterValue || ''

@@ -1,1 +1,13 @@
-<app-nobel-prize-filter (applyFilter)="applyFilter($event)" />
+<div class="relative content">
+  <app-nobel-prize-filter (applyFilter)="applyFilter()" />
+  
+  <div class="bottom-fixed">
+    <mat-paginator 
+      class="bg-zinc-50"
+      [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[15, 25, 50]"
+      aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>

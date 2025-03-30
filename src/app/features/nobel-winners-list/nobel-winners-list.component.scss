@@ -1,0 +1,8 @@
+@use '../../../assets/styles/variables.scss' as vars;
+
+.bottom-fixed {
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid vars.$border-gray;
+  width: 100%;
+}
