@@ -1,1 +1,36 @@
-<p>filter-form works!</p>
+<div class="filter-form p-4">
+  <h1 class="font-semibold text-2xl">Filter</h1>
+  <form [formGroup]="filterForm" class="mt-2 flex flex-col gap-4">
+    <mat-form-field class="w-full">
+      <mat-label>Nobel Prize From Year</mat-label>
+      <input matInput [matDatepicker]="fromDp" [min]="minDate" [max]="currentYear" formControlName="nobelPrizeYear">
+      <mat-datepicker-toggle matIconSuffix [for]="fromDp"></mat-datepicker-toggle>
+      <mat-datepicker 
+        #fromDp
+        startView="multi-year"
+        (yearSelected)="setYear($event, fromDp, 'nobelPrizeYear')"
+        panelClass="year-picker"
+      ></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Nobel Prize Till Year</mat-label>
+      <input matInput [matDatepicker]="toDp" [min]="getMinDate()" [max]="currentYear" formControlName="yearTo">
+      <mat-datepicker-toggle matIconSuffix [for]="toDp"></mat-datepicker-toggle>
+      <mat-datepicker 
+        #toDp
+        startView="multi-year"
+        (yearSelected)="setYear($event, toDp, 'yearTo')"
+        panelClass="year-picker"
+      ></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="nobelPrizeCategory">
+        @for (category of categories; track category.value) {
+          <mat-option [value]="category.value">{{ category.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button [disabled]="filterForm.invalid" (click)="addFilter()">Add Filters</button>
+  </form>
+</div>
