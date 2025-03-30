@@ -1,7 +1,9 @@
 .app {
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: calc(100vh - 1.5rem);
+  position: relative;
 }
 .content {
+  position: relative;
   flex: 1;
 }
