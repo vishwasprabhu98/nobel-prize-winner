@@ -101,4 +101,8 @@ export class FilterFormComponent implements OnInit {
     }
     return this.getDateFromYear(1901)
   }
+
+  closeDialog() {
+    this.dialogRef.close()
+  }
 }

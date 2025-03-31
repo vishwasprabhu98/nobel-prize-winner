@@ -1,2 +1,102 @@
-<p>laureate works!</p>
-<button (click)="goBack()">back</button>
+<div class="p-5">
+  @if (winnerInformation && !isLoading) {
+    @if (winnerInformation['fullName']) {
+      <p class="font-semibold text-3xl pb-2">{{ winnerInformation.fullName.en || winnerInformation.knownName?.en }}</p>
+    }
+    @if (winnerInformation['orgName']) {
+      <p class="font-semibold text-3xl pb-2">{{ winnerInformation.orgName.en || winnerInformation.nativeName }}</p>
+    }
+
+    @if (winnerInformation['birth']) {
+      <p class="text-neutral-700">Born on {{ winnerInformation.birth.date | date : 'dd MMMM, yyyy' }} at {{ winnerInformation.birth.place.locationString.en }}</p>
+    }
+    @if (winnerInformation['founded']) {
+      <p class="text-neutral-700">Born on {{ winnerInformation.founded.date | date : 'dd MMMM, yyyy' }} at {{ winnerInformation.founded.place.locationString.en }}</p>
+    }
+
+    <p class="pt-6 py-4 font-medium text-xl underline underline-offset-2">Nobel Prizes</p>
+
+    @for(prize of winnerInformation.nobelPrizes; track $index) {
+      <p class="text-neutral-500">{{prize?.categoryFullName?.en}}, {{prize?.awardYear}}</p>
+      <p class="py-2 text-lg titlecase">{{ prize.motivation.en }}.</p>
+      <p class="text-sm pb-2"><span class="text-neutral-500">Awarded On: </span>{{prize?.dateAwarded | date: 'dd MMMM, yyyy' }}</p>
+      <p class="text-sm pb-4"><span class="text-neutral-500">Prize Share: </span>{{prize?.portion}}</p>
+      
+      <mat-accordion>
+        @if (prize.links.length > 1) {
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Links </mat-panel-title>
+            </mat-expansion-panel-header>
+            @for(link of prize.links; track $index) {
+              @if (link.rel === EXTERNAL_LINK) {
+                <p><a [href]="link.href" class="link underline-offset-2 pb-2" target="_blank">{{ link.title }} <mat-icon>open_in_new</mat-icon></a></p>
+              }
+            }
+          </mat-expansion-panel>
+        }
+  
+        @if (prize['affiliations'] && prize.affiliations.length > 1) {
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Affiliations </mat-panel-title>
+            </mat-expansion-panel-header>
+            @for(affiliation of prize.affiliations; track $index) {
+              <div class="py-1">
+                <p>{{affiliation.nameNow.en}}</p>
+                <p class="text-neutral-500">
+                  @if (affiliation.countryNow.sameAs.length) {
+                    <a [href]="affiliation.countryNow.sameAs[0]" class="link underline-offset-2" target="_blank">{{ affiliation.locationString.en }} <mat-icon>open_in_new</mat-icon></a>
+                  } @else {
+                    <a>{{ affiliation.locationString.en }}</a>
+                  }
+                </p>
+              </div>
+            }
+          </mat-expansion-panel>
+        }
+      </mat-accordion>
+    }
+
+    <p class="pt-6 py-4 font-medium text-xl underline underline-offset-2">More Information</p>
+
+    <mat-accordion>
+      @if (winnerInformation.links.length > 1) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Links </mat-panel-title>
+          </mat-expansion-panel-header>
+          @for(link of winnerInformation.links; track $index) {
+            @if (link.rel === EXTERNAL_LINK) {
+              <p><a [href]="link.href" target="_blank" class="link underline-offset-2 pb-2">{{ link.title }} <mat-icon>open_in_new</mat-icon></a></p>
+            }
+          }
+        </mat-expansion-panel>
+      }
+
+      @if (winnerInformation.wikidata || winnerInformation.wikipedia) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Wikipedia </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="py-1">
+            @if (winnerInformation.wikidata['url']) {
+              <p><a [href]="winnerInformation.wikidata.url" class="link underline-offset-2 pb-2" target="_blank">{{ winnerInformation.wikidata.url }} <mat-icon>open_in_new</mat-icon></a></p>
+            } 
+            @if (winnerInformation.wikipedia['english']) {
+              <p><a [href]="winnerInformation.wikipedia.english" class="link underline-offset-2" target="_blank">{{ winnerInformation.wikipedia.english }} <mat-icon>open_in_new</mat-icon></a></p>
+            }
+          </div>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  }
+  @if (isLoading) {
+    <app-nobel-winner-info-loader></app-nobel-winner-info-loader>
+  }
+</div>
+@if (!isLoading) {
+  <div class="text-center">
+    <button mat-flat-button (click)="goBack()">Back</button>
+  </div>
+}

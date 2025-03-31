@@ -15,6 +15,14 @@ app.get('/nobelPrizes', (req, res) => {
   .then(resp => res.send(resp))
 })
 
+app.get('/laureate/:id', (req, res) => {
+  fetch(baseUrl + req.url, {
+    method: 'GET'
+  })
+  .then(resp => resp.json())
+  .then(resp => res.send(resp))
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

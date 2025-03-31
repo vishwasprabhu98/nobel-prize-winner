@@ -22,3 +22,14 @@
     }
   }
 }
+
+@mixin paginator-styles {
+  @media screen and (max-width: 480px) {   
+    .mat-mdc-paginator-container {
+      justify-content: space-between !important;
+      .mat-mdc-paginator-page-size-label {
+        display: none;
+      }
+    }
+  }
+}

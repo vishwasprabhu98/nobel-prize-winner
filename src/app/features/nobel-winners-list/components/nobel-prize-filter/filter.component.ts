@@ -70,7 +70,7 @@ export class NobelPrizeFilterComponent {
 
   openAdvancedFilter() {
     const dialogRef = this.dialog.open(FilterFormComponent, {
-      minWidth: '300px',
+      minWidth: '350px',
       data: {
         ...this.searchFilter()
       }

@@ -1,51 +1,51 @@
 export interface NobelPrizeList {
   nobelPrizes: NobelPrize[];
-  meta:        Meta;
-  links:       Links;
+  meta: Meta;
+  links: Links;
 }
 
 export interface Links {
   first: string;
-  self:  string;
-  next:  string;
-  last:  string;
+  self: string;
+  next: string;
+  last: string;
 }
 
 export interface Meta {
-  offset:     number;
-  limit:      number;
-  count:      number;
-  terms:      string;
-  license:    string;
+  offset: number;
+  limit: number;
+  count: number;
+  terms: string;
+  license: string;
   disclaimer: string;
 }
 
 export interface NobelPrize {
-  awardYear:           string;
-  category:            Category;
-  categoryFullName:    Category;
-  dateAwarded:         Date;
-  prizeAmount:         number;
+  awardYear: string;
+  category: Category;
+  categoryFullName: Category;
+  dateAwarded: Date;
+  prizeAmount: number;
   prizeAmountAdjusted: number;
-  links:               Link[];
-  laureates:           Laureate[];
+  links: Link[];
+  laureates: Laureate[];
 }
 
 export interface Category {
-  en:  string;
+  en: string;
   no?: string;
   se?: string;
 }
 
 export interface Laureate {
-  id:          string;
-  knownName?:  Name;
-  fullName?:   Name;
-  portion:     string;
-  sortOrder:   string;
-  motivation:  Category;
-  links:       Link[];
-  orgName?:    OrgName;
+  id: string;
+  knownName?: Name;
+  fullName?: Name;
+  portion: string;
+  sortOrder: string;
+  motivation: Category;
+  links: Link[];
+  orgName?: OrgName;
   nativeName?: string;
 }
 
@@ -54,23 +54,23 @@ export interface Name {
 }
 
 export interface Link {
-  rel:    Rel;
-  href:   string;
+  rel: Rel;
+  href: string;
   action: Action;
-  types:  Types;
+  types: Types;
 }
 
 export enum Action {
-  Get = "GET",
+  Get = 'GET',
 }
 
 export enum Rel {
-  Laureate = "laureate",
-  NobelPrize = "nobelPrize",
+  Laureate = 'laureate',
+  NobelPrize = 'nobelPrize',
 }
 
 export enum Types {
-  ApplicationJSON = "application/json",
+  ApplicationJSON = 'application/json',
 }
 
 export interface OrgName {
