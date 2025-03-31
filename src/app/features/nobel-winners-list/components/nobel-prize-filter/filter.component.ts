@@ -95,12 +95,11 @@ export class NobelPrizeFilterComponent {
       ...this.filterService.filterSignal(),
       nobelPrizeYear: normalizeYear.year()
     })
-    this.applyFilter.emit()
   }
 
   removeFilter(key: string) {
     if (key === FILTER_KEYS.NOBEL_PRIZE_YEAR) {
-      this.commonService.openSnackBar('Cannot Delete From Year Filter')
+      this.commonService.openSnackBar('Cannot Delete From Year')
       return
     }
 

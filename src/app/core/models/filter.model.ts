@@ -3,3 +3,7 @@ export interface NobelPrizeListFilter {
   yearTo: number | null
   nobelPrizeCategory: string | null
 }
+export interface NobelPrizeListFilterPayload extends NobelPrizeListFilter {
+  offset: number
+  limit: number
+}
