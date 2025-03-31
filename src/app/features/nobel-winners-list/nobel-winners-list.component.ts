@@ -5,10 +5,11 @@ import { NobelWinnersService } from '../../core/services/nobel-winners/nobel-win
 import { FilterService } from '../../core/services/filter-service/filter.service';
 import { NobelPrizeCardComponent } from './components/nobel-prize-card/nobel-prize-card.component';
 import { NobelPrize, NobelPrizeList } from '../../core/models/nobel-prize.model';
+import { NobelPrizeCardLoaderComponent } from '../../shared/components/loading-screen/nobel-prize-card-loader/nobel-prize-card-loader.component';
 
 @Component({
   selector: 'app-nobel-winners-list',
-  imports: [NobelPrizeFilterComponent, NobelPrizeCardComponent, MatPaginatorModule],
+  imports: [NobelPrizeFilterComponent, NobelPrizeCardComponent, MatPaginatorModule, NobelPrizeCardLoaderComponent],
   templateUrl: './nobel-winners-list.component.html',
   styleUrl: './nobel-winners-list.component.scss'
 })
@@ -25,7 +26,10 @@ export class NobelWinnersListComponent {
   totalResultsLength = 0
   pageSizeOptions = [15, 25, 50]
 
-  applyFilter() {
+  applyFilter(resetPageIndex: boolean = true) {
+    if (resetPageIndex) {
+      this.pageIndex = 0
+    }
     this.isLoading = true
     this.nobelWinnersService.fetchNobelWinnersList({
       ...this.filterService.filterSignal(),
@@ -38,7 +42,6 @@ export class NobelWinnersListComponent {
         this.totalResultsLength = response.meta.count
       },
       error: (e) => {
-        console.log('%csrc/app/features/nobel-winners-list/nobel-winners-list.component.ts:41 object', 'color: #007acc;', e);
         this.isLoading = false
       }
     })
@@ -47,6 +50,6 @@ export class NobelWinnersListComponent {
   onPaginate(event: PageEvent) {
     this.pageIndex = event.pageIndex
     this.pageSize = event.pageSize
-    this.applyFilter()
+    this.applyFilter(false)
   }
 }

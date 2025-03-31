@@ -10,8 +10,12 @@ export const routes: Routes = [
     loadComponent: () => import('./features/dashboard/dashboard.component').then(c => c.DashboardComponent)
   },
   {
-    path: '**',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  }
+    path: 'laureate/:id',
+    loadComponent: () => import('./features/laureate/laureate.component').then(c => c.LaureateComponent)
+  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'dashboard',
+  //   pathMatch: 'full'
+  // }
 ];

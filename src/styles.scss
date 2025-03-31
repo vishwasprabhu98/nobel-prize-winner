@@ -31,5 +31,21 @@ body { margin: 0; }
 .mdc-text-field--filled {
   border-radius: 0.25rem !important;
 }
+.shimmer {
+  background-color: #80808035;
+  border-radius: 4px;
+  animation-name: shimmeranimation;
+  animation-duration: 400ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes shimmeranimation {
+  from {
+    background-color: #80808035;
+  }
+  to {
+    background-color: #80808017;
+  }
+}
 // include date picker styles
 @include calender-styles();

@@ -1,4 +1,4 @@
-import { Component, computed, effect, EventEmitter, inject, Output, Signal, WritableSignal } from '@angular/core';
+import { Component, effect, EventEmitter, inject, Output, WritableSignal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon'
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -62,6 +62,9 @@ export class NobelPrizeFilterComponent {
       this.date.setValue(momentDate)
       this.searchFilter = filterService.filterSignal
       this.applyFilter.emit()
+      this.toggleFilterView({
+        ...this.searchFilter()
+      })
     })
   }
 
@@ -97,14 +100,21 @@ export class NobelPrizeFilterComponent {
     })
   }
 
-  removeFilter(key: string) {
+  removeFilter(filterKey: string) {
+    const key = filterKey as keyof NobelPrizeListFilter
+    const filterData = this.filterService.filterSignal()
+
     if (key === FILTER_KEYS.NOBEL_PRIZE_YEAR) {
-      this.commonService.openSnackBar('Cannot Delete From Year')
-      return
+      // set to 1901 because it is default starting date
+      if (filterData[key] === 1901) {
+        this.commonService.openSnackBar('Default From Year is 1901')
+        return
+      }
+      filterData.nobelPrizeYear = new Date('01-01-1901').getFullYear()
+    } else {
+      filterData[key] = null
     }
 
-    const filterData = this.filterService.filterSignal()
-    filterData[key as keyof NobelPrizeListFilter] = null
     this.filterService.setNobelListFilter({
       ...filterData,
     })
@@ -113,6 +123,7 @@ export class NobelPrizeFilterComponent {
 
   toggleFilterView(filterData: NobelPrizeListFilter) {
     let filterCount = 0
+    this.showFilterCrumbs = true
     Object.keys(filterData).forEach(key => {
       if (filterData[key as keyof NobelPrizeListFilter]) {
         filterCount++

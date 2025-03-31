@@ -2,17 +2,21 @@
   <app-nobel-prize-filter (applyFilter)="applyFilter()" />
 
   <div class="prize-winners pb-15 p-5">
-    @if (!prizeWinnersList || !prizeWinnersList.length) {
-      <div class="flex pt-20 mx-auto justify-center flex-col">
-        <h3 class="text-3xl pb-4 font-semibold text-center">No Results Found</h3>
-        <p class="text-center text-neutral-500">Oops! We couldn't find any matching results. Modify your filters and try again.</p>
-      </div>
-    }
-    @for (prize of prizeWinnersList; track prize.laureates[0].id) {
-      <app-nobel-prize-card [prize]="prize"></app-nobel-prize-card>
+    @if (!isLoading) {
+      @if (!prizeWinnersList || !prizeWinnersList.length) {
+        <!-- no results found for the selected filter  -->
+        <div class="flex pt-20 mx-auto justify-center flex-col">
+          <h3 class="text-3xl pb-4 font-semibold text-center">No Results Found</h3>
+          <p class="text-center text-neutral-500">Oops! We couldn't find any matching results. Modify your filters and try again.</p>
+        </div>
+      }
+      @for (prize of prizeWinnersList; track prize.laureates[0].id) {
+        <app-nobel-prize-card [prize]="prize"></app-nobel-prize-card>
+      }
     }
     @if (isLoading) {
       <!-- show loading ui -->
+      <app-nobel-prize-card-loader></app-nobel-prize-card-loader>
     }
   </div>
 

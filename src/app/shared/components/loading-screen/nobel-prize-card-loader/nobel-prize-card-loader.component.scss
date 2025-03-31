@@ -1,0 +1,13 @@
+@use '../../../../../assets/styles/variables.scss' as vars;
+
+.winner-card {
+  border: 1px solid vars.$border-gray;
+}
+.laurate-name {
+  font-size: 1.375rem;
+  font-weight: 500;
+  transition: all 300ms ease-in-out;
+  &:hover {
+    text-decoration: underline;
+  }
+}
