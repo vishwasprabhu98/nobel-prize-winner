@@ -39,7 +39,7 @@ export class LaureateComponent implements OnInit {
     this.nobelWinnersService.fetchNobelWinnerInfoById(id).subscribe({
       next: (response) => {
         this.isLoading = false
-        if (response[0]) {
+        if (response[0]?.id) {
           this.winnerInformation = response[0]
         } else {
           this.winnerInformation = null

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NobelPrizeFilterComponent } from "./components/nobel-prize-filter/filter.component";
-import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { NobelWinnersService } from '../../core/services/nobel-winners/nobel-winners.service';
 import { FilterService } from '../../core/services/filter-service/filter.service';
 import { NobelPrizeCardComponent } from './components/nobel-prize-card/nobel-prize-card.component';
@@ -26,25 +26,38 @@ export class NobelWinnersListComponent {
   totalResultsLength = 0
   pageSizeOptions = [15, 25, 50]
 
-  applyFilter(resetPageIndex: boolean = true) {
+  applyFilter(resetPageIndex = true) {
     if (resetPageIndex) {
       this.pageIndex = 0
     }
+
     this.isLoading = true
-    this.nobelWinnersService.fetchNobelWinnersList({
+    const queryParams = {
       ...this.filterService.filterSignal(),
       limit: this.pageSize,
       offset: this.pageSize * this.pageIndex
-    }).subscribe({
-      next: (response: NobelPrizeList) => {
+    }
+    this.nobelWinnersService.fetchNobelWinnersList(queryParams)
+    .subscribe({
+      next: (response: NobelPrizeList|null) => {
         this.isLoading = false
-        this.prizeWinnersList = response.nobelPrizes
-        this.totalResultsLength = response.meta.count
+        if (response) {
+          this.prizeWinnersList = response.nobelPrizes
+          this.totalResultsLength = response.meta.count
+        } else {
+          this.resetWinnersList()
+        }
       },
       error: (e) => {
         this.isLoading = false
+        this.resetWinnersList()
       }
     })
+  }
+
+  resetWinnersList() {
+    this.prizeWinnersList = null
+    this.totalResultsLength = 0
   }
 
   onPaginate(event: PageEvent) {

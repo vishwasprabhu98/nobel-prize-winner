@@ -94,6 +94,12 @@
   @if (isLoading) {
     <app-nobel-winner-info-loader></app-nobel-winner-info-loader>
   }
+  @if (!winnerInformation && !isLoading) {
+    <!-- no results found for the selected id  -->
+    <div class="flex pt-20 mx-auto justify-center flex-col">
+      <h3 class="text-3xl pb-4 font-semibold text-center">Data Not Found!</h3>
+    </div>
+  }
 </div>
 @if (!isLoading) {
   <div class="text-center">
