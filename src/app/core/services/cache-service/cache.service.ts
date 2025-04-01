@@ -8,6 +8,7 @@ import { NobelPrizeList } from '../../models/nobel-prize.model';
 export class CacheService {
 
   nobelWinnerListCache = new Map<string, { time: Moment, data: NobelPrizeList }>()
+  cacheSetCounter = 0
 
   hasQueryDataForWinnerList(query: string) {
     const hasData = this.nobelWinnerListCache.has(query)
@@ -28,7 +29,18 @@ export class CacheService {
   }
 
   setQueryDataForWinnerList(query: string, data: NobelPrizeList) {
-    return this.nobelWinnerListCache.set(query, { time: moment(), data })
+    this.cacheSetCounter++
+    this.nobelWinnerListCache.set(query, { time: moment(), data })
+    
+    // will go through all elements and remove older cache saves 
+    if (this.cacheSetCounter === 10) {
+      for(const key of this.nobelWinnerListCache.keys()) {
+        if (this.isOlderThanGivenMinutes(10, this.nobelWinnerListCache.get(key)?.time)) {
+          this.nobelWinnerListCache.delete(key)
+        }
+      }
+      this.cacheSetCounter = 0
+    }
   }
 
   isOlderThanGivenMinutes(minutes: number, time?: Moment) {

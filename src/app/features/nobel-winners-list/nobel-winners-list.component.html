@@ -1,7 +1,7 @@
 <div class="relative content">
   <app-nobel-prize-filter (applyFilter)="applyFilter()" />
 
-  <div class="prize-winners pb-15 p-5">
+  <div class="prize-winners pb-15 p-5 mx-auto max-w-320">
     @if (!isLoading) {
       @if (!prizeWinnersList || !prizeWinnersList.length) {
         <!-- no results found for the selected filter  -->
@@ -23,7 +23,7 @@
   @if (prizeWinnersList?.length && totalResultsLength > pageSize) {
     <div class="bottom-fixed">
       <mat-paginator 
-        class="bg-zinc-50"
+        class="bg-zinc-50 mx-auto max-w-320"
         [length]="totalResultsLength"
         [pageSize]="pageSize"
         [pageIndex]="pageIndex"

@@ -1,4 +1,4 @@
-<div class="p-5">
+<div class="p-5 mx-auto max-w-320">
   @if (winnerInformation && !isLoading) {
     @if (winnerInformation['fullName']) {
       <p class="font-semibold text-3xl pb-2">{{ winnerInformation.fullName.en || winnerInformation.knownName?.en }}</p>
@@ -24,7 +24,7 @@
       
       <mat-accordion>
         @if (prize.links.length > 1) {
-          <mat-expansion-panel>
+          <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
               <mat-panel-title> Links </mat-panel-title>
             </mat-expansion-panel-header>
