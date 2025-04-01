@@ -1,16 +1,45 @@
-# NobelPrizeWinner
+# Noble Prize Winners
+
+This project displays a list of Nobel Prize winners. It fetches data from an API and presents it in a user-friendly format.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
+
+# Deployed URL
+
+You can access the deployed application at https://nobel-winners-eba46.web.app 🚀
+
+# Design Docs
+
+You can find the design documents in the [attached-docs](https://github.com/vishwasprabhu98/nobel-prize-winner/tree/main/attached-docs) folder with the respective filenames.
+
+- [Rough Design](https://github.com/vishwasprabhu98/nobel-prize-winner/tree/main/attached-docs)
+
+- [Application Document](https://github.com/vishwasprabhu98/nobel-prize-winner/tree/main/attached-docs)
 
 ## Development server
 
 To start a local development server, run:
 
-```bash
+```
 ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Handling CORS Issues
+
+If you encounter a CORS error while making API requests, follow these steps:
+
+Start the proxy server by running:
+
+```
+npm run server
+```
+
+This will run the server in `http://localhost:3000`
+
+Update the API base URL in environment.ts to point to the local proxy server.
+
 
 ## Code scaffolding
 
@@ -36,24 +65,16 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+# Screenshots
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+#### Nobel Laureates List
 
-```bash
-ng test
-```
+![Nobel Laureates List](./attached-docs/prizelist.png)
 
-## Running end-to-end tests
+#### Laureate Information
 
-For end-to-end (e2e) testing, run:
+![Laureate Information](./attached-docs/laureate-info.png)
 
-```bash
-ng e2e
-```
+#### Dashboard
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Dashboard](./attached-docs/dashboard.png)
