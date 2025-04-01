@@ -60,7 +60,10 @@ export class NobelWinnersListComponent {
           this.resetWinnersList()
         }
       },
-      error: () => {
+      error: (e) => {
+        if (e?.error?.message) {
+          this.commonService.openSnackBar(e.error?.message)
+        }
         this.isLoading = false
         this.resetWinnersList()
       }

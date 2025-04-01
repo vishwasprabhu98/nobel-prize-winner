@@ -48,10 +48,12 @@ export class LaureateComponent implements OnInit {
           this.winnerInformation = null
         }
       },
-      error: (error) => {
+      error: (e) => {
+        if (e?.error?.message) {
+          this.commonService.openSnackBar(e.error?.message)
+        }
         this.winnerInformation = null
         this.isLoading = false
-        console.error(error)
       }
     })
   }
