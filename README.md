@@ -12,9 +12,9 @@ You can access the deployed application at https://nobel-winners-eba46.web.app ð
 
 You can find the design documents in the [attached-docs](https://github.com/vishwasprabhu98/nobel-prize-winner/tree/main/attached-docs) folder with the respective filenames.
 
-- [Rough Design](https://github.com/vishwasprabhu98/nobel-prize-winner/tree/main/attached-docs)
+- [Rough Design](https://github.com/vishwasprabhu98/nobel-prize-winner/blob/main/attached-docs/Rough-Design.pdf)
 
-- [Application Document](https://github.com/vishwasprabhu98/nobel-prize-winner/tree/main/attached-docs)
+- [Application Document](https://github.com/vishwasprabhu98/nobel-prize-winner/blob/main/attached-docs/Nobel-Prize-Winners.pdf)
 
 ## Development server
 
