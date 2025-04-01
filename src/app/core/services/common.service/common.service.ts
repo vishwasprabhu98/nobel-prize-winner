@@ -37,12 +37,9 @@ export class CommonService {
     } else {
       this.backButtonRoute.set(route ?? '')
     }
-    console.log('%csrc/app/core/services/common.service/common.service.ts:43 this.backButtonRoute()', 'color: #007acc;', this.backButtonRoute());
-
   }
 
   navigateBack() {
-    console.log('%csrc/app/core/services/common.service/common.service.ts:43 this.backButtonRoute()', 'color: #007acc;', this.backButtonRoute());
     this.router.navigateByUrl(this.backButtonRoute() ?? '')
   }
 
