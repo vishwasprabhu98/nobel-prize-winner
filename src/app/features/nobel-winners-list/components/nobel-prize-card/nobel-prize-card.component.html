@@ -1,4 +1,4 @@
-<div class="winner-card p-4 mb-4 rounded-sm">
+<div class="winner-card p-4 mb-4 rounded-sm bg-neutral-100">
   <p class="text-neutral-500">{{prize()?.categoryFullName?.en}}, {{prize()?.awardYear}}</p>
   <div class="laureates">
     @for (laureate of prize()?.laureates; track laureate.id) {

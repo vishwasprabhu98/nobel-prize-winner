@@ -2,6 +2,7 @@
 
 .winner-card {
   border: 1px solid vars.$border-gray;
+  box-shadow: 0 0 12px 2px vars.$border-gray;
 }
 .laurate-name {
   font-size: 1.375rem;
