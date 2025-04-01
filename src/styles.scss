@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use "tailwindcss";
-@import "./assets/styles/mixins.scss";
+@use "./assets/styles/mixins.scss" as mixins;
 * {
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
@@ -78,7 +78,7 @@ body { margin: 0; }
 }
 
 // Include date picker styles
-@include calender-styles();
+@include mixins.calender-styles();
 
 // Paginator styles of mobile UI
-@include paginator-styles();
+@include  mixins.paginator-styles();

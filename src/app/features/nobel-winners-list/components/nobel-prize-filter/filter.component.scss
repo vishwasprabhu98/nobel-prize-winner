@@ -1,6 +1,10 @@
 @use '../../../../../assets/styles/variables.scss' as vars;
 .search-bar {
   min-height: 50px;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .filter-crumb {
   padding: 0.375rem;
