@@ -8,10 +8,10 @@
     }
 
     @if (winnerInformation['birth']) {
-      <p class="text-neutral-700">Born on {{ winnerInformation.birth.date | date : 'dd MMMM, yyyy' }} at {{ winnerInformation.birth.place.locationString.en }}</p>
+      <p class="text-neutral-700">Born on {{ winnerInformation.birth.date | date : 'dd MMMM, yyyy' }} at {{ winnerInformation.birth?.place?.locationString?.en ?? '-' }}</p>
     }
     @if (winnerInformation['founded']) {
-      <p class="text-neutral-700">Born on {{ winnerInformation.founded.date | date : 'dd MMMM, yyyy' }} at {{ winnerInformation.founded.place.locationString.en }}</p>
+      <p class="text-neutral-700">Founded on {{ winnerInformation.founded.date | date : 'dd MMMM, yyyy' }} at {{ winnerInformation.founded?.place?.locationString?.en ?? '-' }}</p>
     }
 
     <p class="pt-6 py-4 font-medium text-xl underline underline-offset-2">Nobel Prizes</p>
