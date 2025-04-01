@@ -20,7 +20,7 @@ export class NobelWinnersListComponent {
   filterService = inject(FilterService)
   commonService = inject(CommonService)
 
-  prizeWinnersList: Array<NobelPrize> | null = null
+  prizeWinnersList: NobelPrize[] | null = null
   isLoading = false
 
   pageIndex = 0
@@ -29,9 +29,15 @@ export class NobelWinnersListComponent {
   pageSizeOptions = [15, 25, 50]
 
   constructor() {
+    // set the previous page route
     this.commonService.setBackButtonRoute(true, 'dashboard')
   }
 
+  /**
+   * Function to fetch the nobel prize winners list and
+   * sets the list array with api data
+   * @param resetPageIndex boolean, defines the page number
+   */
   applyFilter(resetPageIndex = true) {
     if (resetPageIndex) {
       this.pageIndex = 0
@@ -54,7 +60,7 @@ export class NobelWinnersListComponent {
           this.resetWinnersList()
         }
       },
-      error: (e) => {
+      error: () => {
         this.isLoading = false
         this.resetWinnersList()
       }
@@ -66,6 +72,10 @@ export class NobelWinnersListComponent {
     this.totalResultsLength = 0
   }
 
+  /**
+   * Function to handle the pagination event
+   * @param event PageEvent
+   */
   onPaginate(event: PageEvent) {
     this.pageIndex = event.pageIndex
     this.pageSize = event.pageSize

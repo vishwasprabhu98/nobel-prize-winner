@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonService } from '../../../core/services/common.service/common.service';
@@ -12,6 +11,10 @@ import { CommonService } from '../../../core/services/common.service/common.serv
 export class HeaderComponent {
   commonService = inject(CommonService)
 
+  /**
+   * On clicking Back button navigate to the route
+   * set in comment service
+   */
   back() {
     this.commonService.navigateBack()
   }

@@ -68,6 +68,7 @@ export class NobelPrizeFilterComponent {
     })
   }
 
+  // Function to open filter dialog
   openAdvancedFilter() {
     const dialogRef = this.dialog.open(FilterFormComponent, {
       minWidth: '350px',
@@ -89,6 +90,11 @@ export class NobelPrizeFilterComponent {
     )
   }
 
+  /**
+   * Set the date value with year
+   * @param normalizeYear selected Date in Moment
+   * @param datepicker reference to datepicker
+   */
   setYear(normalizeYear: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.date.value ?? moment();
     ctrlValue.year(normalizeYear.year());
@@ -100,6 +106,11 @@ export class NobelPrizeFilterComponent {
     })
   }
 
+  /**
+   * Remove the filter (invoked on invoking cross icon)
+   * @param filterKey filter to be removed
+   * @returns void
+   */
   removeFilter(filterKey: string) {
     const key = filterKey as keyof NobelPrizeListFilter
     const filterData = this.filterService.filterSignal()
@@ -121,6 +132,11 @@ export class NobelPrizeFilterComponent {
     this.toggleFilterView(filterData)
   }
 
+  /**
+   * This function will toggle the filter view with datepicker or filterItems
+   * when filter count is more than 1, filterItems are shown
+   * @param filterData Object of filter
+   */
   toggleFilterView(filterData: NobelPrizeListFilter) {
     let filterCount = 0
     this.showFilterCrumbs = true
@@ -134,6 +150,10 @@ export class NobelPrizeFilterComponent {
     }
   }
 
+  /**
+   * @param key Object key
+   * @returns value from search filter 
+   */
   getPropertyValue(key: string) {
     const filterValue = this.searchFilter()[key as keyof NobelPrizeListFilter]
     if (key === FILTER_KEYS.NOBEL_PRIZE_CATEGORY && filterValue) {

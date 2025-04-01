@@ -14,7 +14,7 @@ export class NobelPrizeCardComponent {
 
   getName(laureate: Laureate) {
     if (laureate?.['orgName']) {
-      return laureate['orgName'].en
+      return laureate['orgName']?.en ?? ''
     } else {
       return laureate['fullName']?.en ?? ''
     }

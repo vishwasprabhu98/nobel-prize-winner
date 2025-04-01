@@ -10,6 +10,11 @@ export class CacheService {
   nobelWinnerListCache = new Map<string, { time: Moment, data: NobelPrizeList }>()
   cacheSetCounter = 0
 
+  /**
+   * Checks if the valid data is available in cache for given query
+   * @param query key for the cache
+   * @returns boolean
+   */
   hasQueryDataForWinnerList(query: string) {
     const hasData = this.nobelWinnerListCache.has(query)
     if (hasData) {
@@ -24,10 +29,21 @@ export class CacheService {
     return hasData
   }
 
+  /**
+   * Return the data from the cache
+   * @param query key
+   * @returns cached data
+   */
   getQueryDataForWinnerList(query: string) {
     return this.nobelWinnerListCache.get(query)?.data
   }
 
+  /**
+   * Add the response to the cache file
+   * @param query key
+   * @param data data to be stored in the cache
+   * Moment is added to data.time to delete the cached value after `x` minutes
+   */
   setQueryDataForWinnerList(query: string, data: NobelPrizeList) {
     this.cacheSetCounter++
     this.nobelWinnerListCache.set(query, { time: moment(), data })
@@ -42,7 +58,7 @@ export class CacheService {
       this.cacheSetCounter = 0
     }
   }
-
+  
   isOlderThanGivenMinutes(minutes: number, time?: Moment) {
     if (time) {
       return moment().diff(time, 'minutes') > minutes - 1

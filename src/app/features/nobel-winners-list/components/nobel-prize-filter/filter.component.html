@@ -8,7 +8,7 @@
               <div class="filter-crumb rounded-sm">
                 <span class="hidden sm:inline text-neutral-500">{{ getKeyValue(key) }}</span>
                 <span class=" text-neutral-600 font-semibold px-2 bg-zinc-200 mx-1 rounded-sm break-keep">{{ getPropertyValue(key) }}</span>
-                <span class="text-sm-icon cursor-pointer text-neutral-900" (click)="removeFilter(key)">
+                <span class="text-sm-icon cursor-pointer text-neutral-900" (click)="removeFilter(key)" (keyup.enter)="removeFilter(key)" tabindex="0">
                   <mat-icon fontIcon="close"></mat-icon>
                 </span>
               </div>
@@ -30,7 +30,7 @@
           ></mat-datepicker>
         </mat-form-field>
       }
-      <p class="font-semibold text-sm text-sky-700 pl-2 cursor-pointer" (click)="openAdvancedFilter()">Advanced Filter</p>
+      <p class="font-semibold text-sm text-sky-700 pl-2 cursor-pointer" (click)="openAdvancedFilter()" (keyup.enter)="openAdvancedFilter()" tabindex="0">Advanced Filter</p>
     </div>
   </div>
 </div>

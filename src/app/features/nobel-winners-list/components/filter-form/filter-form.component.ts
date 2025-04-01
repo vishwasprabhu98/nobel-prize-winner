@@ -77,6 +77,12 @@ export class FilterFormComponent implements OnInit {
     return moment(`01/01/${year}`, 'DD/MM/YYYY')
   }
 
+  /**
+   * Function called while the year is selected from the datepicker
+   * @param normalizeYear Date selected in Moment type
+   * @param datepicker reference variable of datepicker
+   * @param controlName formControlName of the form
+   */
   setYear(
     normalizeYear: Moment,
     datepicker: MatDatepicker<Moment>,
@@ -88,6 +94,9 @@ export class FilterFormComponent implements OnInit {
     datepicker.close();
   }
 
+  /**
+   * Return the filter selected in the dialog module
+   */
   addFilter() {
     const payload = this.filterForm.getRawValue();
     payload.nobelPrizeYear = payload.nobelPrizeYear?.year() ?? null;

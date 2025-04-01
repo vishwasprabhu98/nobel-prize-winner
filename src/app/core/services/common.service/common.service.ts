@@ -13,23 +13,34 @@ export class CommonService {
   showBackButton = signal(false)
   backButtonRoute = signal<string|null>('')
 
-  openSnackBar(message: string, action?: string) {
-    this._snackBar.open(message, '', {
-      duration: 3000
+  openSnackBar(message: string, action = '') {
+    this._snackBar.open(message, action, {
+      duration: 3000,
     });
   }
 
-  removeEmptyValues(object: any) {
-    const recordObject: Record<string, string | number | boolean | readonly (string | number | boolean)[]> = {}
+  /**
+   * Removes the properties of Object having null value 
+   * @param object Object with or without null values
+   * @returns Object without null value
+   */
+  removeEmptyValues<T>(object: T) {
+    const returnObject: Partial<T> = {}
     const keys = object && Object.keys(object)?.length ? Object.keys(object) : []
     keys.forEach((key: string) => {
-      if (!!object[key]) {
-        recordObject[key] = object[key]
+      const keyOfT = key as keyof T
+      if (object[keyOfT]) {
+        returnObject[keyOfT] = object[keyOfT]
       }
     })
-    return recordObject
+    return returnObject as Record<string, string | number | boolean | readonly (string | number | boolean)[]>
   }
 
+  /**
+   * Sets the Back button icon visiblity
+   * @param showBackButton show/hide back button in header
+   * @param route navigation route for back button click
+   */
   setBackButtonRoute(showBackButton: boolean, route?: string) {
     this.showBackButton.set(showBackButton)
     if (!showBackButton) {
