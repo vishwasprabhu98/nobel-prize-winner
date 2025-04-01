@@ -8,7 +8,7 @@ import moment from 'moment';
 export class FilterService {
 
   filterSignal = signal<NobelPrizeListFilter>({
-    nobelPrizeYear: new Date().getFullYear(),
+    nobelPrizeYear: new Date().getFullYear() - 1,
     yearTo: null,
     nobelPrizeCategory: null
   })

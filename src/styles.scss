@@ -28,6 +28,10 @@ body { margin: 0; }
   // buttons
   --mdc-filled-button-container-color: oklch(0.5 0.134 242.749);
   --mdc-filled-button-container-shape: 4px;
+  // tooltip
+  --mdc-plain-tooltip-supporting-text-font: "Work Sans", sans-serif;
+  // snackbar
+  --mdc-snackbar-supporting-text-font: "Work Sans", sans-serif;
 }
 
 .mat-mdc-form-field-subscript-wrapper {
