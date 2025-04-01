@@ -1,5 +1,6 @@
-import { inject, Injectable } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class CommonService {
 
   private _snackBar = inject(MatSnackBar);
+  private router = inject(Router)
+  
+  showBackButton = signal(false)
+  backButtonRoute = signal<string|null>('')
 
   openSnackBar(message: string, action?: string) {
     this._snackBar.open(message, '', {
@@ -23,6 +28,22 @@ export class CommonService {
       }
     })
     return recordObject
+  }
+
+  setBackButtonRoute(showBackButton: boolean, route?: string) {
+    this.showBackButton.set(showBackButton)
+    if (!showBackButton) {
+      this.backButtonRoute.set(null)
+    } else {
+      this.backButtonRoute.set(route ?? '')
+    }
+    console.log('%csrc/app/core/services/common.service/common.service.ts:43 this.backButtonRoute()', 'color: #007acc;', this.backButtonRoute());
+
+  }
+
+  navigateBack() {
+    console.log('%csrc/app/core/services/common.service/common.service.ts:43 this.backButtonRoute()', 'color: #007acc;', this.backButtonRoute());
+    this.router.navigateByUrl(this.backButtonRoute() ?? '')
   }
 
 }

@@ -6,6 +6,7 @@ import { FilterService } from '../../core/services/filter-service/filter.service
 import { NobelPrizeCardComponent } from './components/nobel-prize-card/nobel-prize-card.component';
 import { NobelPrize, NobelPrizeList } from '../../core/models/nobel-prize.model';
 import { NobelPrizeCardLoaderComponent } from '../../shared/components/loading-screen/nobel-prize-card-loader/nobel-prize-card-loader.component';
+import { CommonService } from '../../core/services/common.service/common.service';
 
 @Component({
   selector: 'app-nobel-winners-list',
@@ -17,6 +18,7 @@ export class NobelWinnersListComponent {
 
   nobelWinnersService = inject(NobelWinnersService)
   filterService = inject(FilterService)
+  commonService = inject(CommonService)
 
   prizeWinnersList: Array<NobelPrize> | null = null
   isLoading = false
@@ -25,6 +27,10 @@ export class NobelWinnersListComponent {
   pageSize = 15
   totalResultsLength = 0
   pageSizeOptions = [15, 25, 50]
+
+  constructor() {
+    this.commonService.setBackButtonRoute(true, 'dashboard')
+  }
 
   applyFilter(resetPageIndex = true) {
     if (resetPageIndex) {

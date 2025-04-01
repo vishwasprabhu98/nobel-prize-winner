@@ -7,6 +7,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NobelWinnerInfoLoaderComponent } from '../../shared/components/loading-screen/nobel-winner-info-loader/nobel-winner-info-loader.component';
+import { CommonService } from '../../core/services/common.service/common.service';
 
 @Component({
   selector: 'app-laureate',
@@ -21,6 +22,7 @@ export class LaureateComponent implements OnInit {
   activatedRouter = inject(ActivatedRoute)
   router = inject(Router)
   nobelWinnersService = inject(NobelWinnersService)
+  commonService = inject(CommonService)
 
   winnerInformation: NobelWinner | null = null
   isLoading = false
@@ -32,6 +34,7 @@ export class LaureateComponent implements OnInit {
     } else {
       this.fetchLaureateInfo(`${laureateId}`)
     }
+    this.commonService.setBackButtonRoute(true, 'prize-list')
   }
 
   fetchLaureateInfo(id: string) {
@@ -51,9 +54,5 @@ export class LaureateComponent implements OnInit {
         console.error(error)
       }
     })
-  }
-
-  goBack() {
-    this.router.navigateByUrl('prize-list')
   }
 }
