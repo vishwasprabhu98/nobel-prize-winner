@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LaureateComponent } from './laureate.component';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('LaureateComponent', () => {
   let component: LaureateComponent;
@@ -8,7 +11,11 @@ describe('LaureateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LaureateComponent]
+      imports: [LaureateComponent],
+      providers: [
+        provideHttpClient(),
+        provideRouter(routes)
+      ]
     })
     .compileComponents();
 
