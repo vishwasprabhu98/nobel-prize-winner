@@ -29,6 +29,7 @@ export interface NobelPrize {
   prizeAmountAdjusted: number;
   links: Link[];
   laureates: Laureate[];
+  topMotivation?: Category
 }
 
 export interface Category {

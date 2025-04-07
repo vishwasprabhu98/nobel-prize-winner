@@ -20,7 +20,7 @@ export interface NobelWinner {
 
 export interface Birth {
   date: string;
-  place: Place;
+  place?: Place;
 }
 
 export interface Place {
@@ -49,7 +49,7 @@ export interface YNow {
 
 export interface Founded {
   date: string;
-  place: Place;
+  place?: Place;
 }
 
 export interface OrgName {

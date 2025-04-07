@@ -30,7 +30,14 @@
           ></mat-datepicker>
         </mat-form-field>
       }
-      <p class="font-semibold text-sm text-sky-700 pl-2 cursor-pointer" (click)="openAdvancedFilter()" (keyup.enter)="openAdvancedFilter()" tabindex="0">Advanced Filter</p>
+      <p class="font-semibold text-sm text-sky-700 pl-2 cursor-pointer" (click)="openAdvancedFilter()" (keyup.enter)="openAdvancedFilter()" tabindex="0">
+        <span class="hidden md:inline">Advanced Filter</span>
+        <span class="inline md:hidden">
+          <mat-icon cl>
+            filter_alt
+          </mat-icon>
+        </span>
+      </p>
     </div>
   </div>
 </div>

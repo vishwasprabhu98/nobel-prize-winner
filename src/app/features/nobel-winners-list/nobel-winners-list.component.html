@@ -10,7 +10,7 @@
           <p class="text-center text-neutral-500">Oops! We couldn't find any matching results. Modify your filters and try again.</p>
         </div>
       }
-      @for (prize of prizeWinnersList; track prize.laureates[0].id) {
+      @for (prize of prizeWinnersList; track $index) {
         <app-nobel-prize-card [prize]="prize"></app-nobel-prize-card>
       }
     }

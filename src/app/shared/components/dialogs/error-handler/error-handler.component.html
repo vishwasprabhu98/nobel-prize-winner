@@ -1,0 +1,10 @@
+<div class="filter-form p-4">
+  <h1 class="font-semibold text-2xl pb-4 flex items-center justify-between">
+    API Error 
+    <mat-icon class="cursor-pointer" (click)="closeDialog()">close</mat-icon>
+  </h1>
+  <p class="py-4">{{ data?.errorMessage ?? 'Something is wrong!'}}</p>
+  <div class="text-center">
+    <button mat-stroked-button (click)="closeDialog()">Close</button>
+  </div>
+</div>
